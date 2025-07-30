@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Python - Piles et Files</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .exam-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .exam-info div {
+            display: inline-block;
+            margin: 0 20px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            border-left: 5px solid #3498db;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #3498db;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .exercise {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid #e74c3c;
+        }
+
+        .exercise h3 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .question {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #27ae60;
+        }
+
+        .question-number {
+            color: #27ae60;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            line-height: 1.4;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .example {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #27ae60;
+        }
+
+        .footer {
+            background: #34495e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐍 Examen de Bilan</h1>
+            <div class="subtitle">Python & Structures de Données</div>
+            
+            <div class="exam-info">
+                <div>🎯 <strong>Objectif :</strong> Évaluer la compréhension globale des bases de Python et des structures piles/files</div>
+                <div>🕓 <strong>Durée :</strong> 1h30</div>
+                <div>🧑‍🎓 <strong>Niveau :</strong> Fin de module d'introduction Python + TP</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Partie 1 -->
+            <div class="section">
+                <h2>Partie 1 : Questions de compréhension</h2>
+                
+                <div class="question">
+                    <div class="question-number">1.</div>
+                    Quelle est la différence entre une <strong>liste</strong> et un <strong>tuple</strong> ?
+                </div>
+
+                <div class="question">
+                    <div class="question-number">2.</div>
+                    Que fait le code suivant ? Que va-t-il afficher ?
+                    <pre>x = [1, 2, 3]
+y = x
+y.append(4)
+print(x)</pre>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">3.</div>
+                    Écrire une fonction <code>pair_ou_impair(n)</code> qui renvoie <code>"pair"</code> si le nombre est pair, sinon <code>"impair"</code>.
+                </div>
+
+                <div class="question">
+                    <div class="question-number">4.</div>
+                    Qu'affiche ce code ?
+                    <pre>a = {"nom": "Ali", "age": 20}
+print(a["nom"])</pre>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">5.</div>
+                    Quelle est la sortie de cette boucle ?
+                    <pre>for i in range(3, 0, -1):
+    print(i)</pre>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">6.</div>
+                    Quelle est la différence entre <code>==</code> et <code>is</code> en Python ?
+                </div>
+
+                <div class="question">
+                    <div class="question-number">7.</div>
+                    Donnez un exemple simple d'une <strong>classe Python</strong>, avec un attribut <code>nom</code> et une méthode <code>affiche()</code> qui affiche ce nom.
+                </div>
+
+                <div class="question">
+                    <div class="question-number">8.</div>
+                    Expliquez le principe de l'<strong>héritage</strong> en Python avec un exemple simple.
+                </div>
+            </div>
+
+            <!-- Partie 2 -->
+            <div class="section">
+                <h2>Partie 2 : Programmation Python</h2>
+
+                <div class="exercise">
+                    <h3>📌 Exercice 1 : Manipulation des listes</h3>
+                    <p>Écrire une fonction <code>moyenne(liste)</code> qui prend une liste de nombres et retourne leur moyenne. Si la liste est vide, retourner <code>None</code>.</p>
+                </div>
+
+                <div class="exercise">
+                    <h3>📌 Exercice 2 : Chaînes de caractères</h3>
+                    <p>Écrire une fonction <code>est_palindrome(chaine)</code> qui renvoie <code>True</code> si la chaîne est un palindrome (ex: <code>"radar"</code>), <code>False</code> sinon. Ignorez les majuscules/minuscules.</p>
+                </div>
+
+                <div class="exercise">
+                    <h3>📌 Exercice 3 : Conversion binaire avec une pile</h3>
+                    <p>Écrire une fonction qui prend un entier <strong>positif</strong> et retourne sa représentation <strong>binaire</strong> en utilisant <strong>une pile</strong>.</p>
+                    <pre>def conversion(val):</pre>
+                </div>
+
+                <div class="exercise">
+                    <h3>📌 Exercice 4 : Vérification de parenthèses bien formées</h3>
+                    <p>Écrire une fonction qui renvoie <code>True</code> si une expression arithmétique a des <strong>parenthèses bien équilibrées</strong> (<code>( )</code>, <code>[ ]</code>, <code>{ }</code>), <code>False</code> sinon.</p>
+                    <pre>def verifie(exp):</pre>
+                </div>
+
+                <div class="exercise">
+                    <h3>📌 Exercice 5 : Évaluation d'une expression postfixée simple</h3>
+                    <p>Écrire une fonction qui évalue une expression <strong>postfixée sans espaces</strong> composée de <strong>chiffres de 0 à 9</strong> et des opérateurs <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>.</p>
+                    <pre>def evalue(expr):</pre>
+                </div>
+            </div>
+
+            <!-- Partie 3 -->
+            <div class="section">
+                <h2>Partie 3 : Structures de données - Files</h2>
+
+                <div class="exercise">
+                    <h3>📌 Exercice 6 : File d'attente – traitement de clients</h3>
+                    <p>Simule une file d'attente avec les clients <code>"Ali"</code>, <code>"Fatima"</code>, <code>"Youssef"</code>. Crée une fonction <code>traite_file()</code> qui :</p>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>Enfile ces clients</li>
+                        <li>Les défiler un à un</li>
+                        <li>Affiche : <code>Client servi : &lt;nom&gt;</code> à chaque étape</li>
+                    </ul>
+                    <div class="highlight">Utiliser <code>collections.deque</code></div>
+                </div>
+
+                <div class="exercise">
+                    <h3>📌 Exercice 7 : Conversion binaire avec une file</h3>
+                    <p>Même principe que l'exercice avec une pile, mais cette fois :</p>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>Utiliser une <strong>file</strong> (ajouter à gauche avec <code>appendleft()</code> dans <code>deque</code>)</li>
+                        <li>Résultat construit au fur et à mesure</li>
+                    </ul>
+                    <pre>def conversion_binaire_file(val):</pre>
+                </div>
+
+                <div class="exercise">
+                    <h3>📌 Exercice 8 : Évaluation postfixée avec nombres réels et espaces</h3>
+                    <p>Fonction qui évalue une <strong>expression postfixée</strong> composée de <strong>nombres réels</strong> et opérateurs <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> séparés par des <strong>espaces</strong>.</p>
+                    <pre>def evalue2(exp):</pre>
+                    
+                    <div class="example">
+                        <strong>Exemples :</strong><br>
+                        <code>evalue2("3 2 + 5 *")</code> ➜ 25.0<br>
+                        <code>evalue2("4 7 8 2 + * +")</code> ➜ 144.0
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Niveau équilibré entre <strong>syntaxe</strong>, <strong>structures</strong>, <strong>POO</strong>, et <strong>algorithmes</strong> simples</p>
+            <p>Tous les concepts ont été vus dans les TD précédents</p>
+        </div>
+    </div>
+</body>
+</html>
